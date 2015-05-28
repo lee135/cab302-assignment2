@@ -10,7 +10,7 @@ import asgn2Manifests.CargoManifest;
 /**
  * Creates a JTextArea in which textual components are laid out to represent the cargo manifest.
  *
- * @author CAB302.
+ * @author Yu Zhang (N8628769)
  */
 public class CargoTextArea extends JTextArea {
 
@@ -44,6 +44,7 @@ public class CargoTextArea extends JTextArea {
      */
     public void setToFind(ContainerCode code) {
         //implementation here - don't forget to update the display
+    	this.setText(cargo.toString(code));
     }
 
     /**
@@ -52,5 +53,14 @@ public class CargoTextArea extends JTextArea {
      */
     public void updateDisplay() {
     	//implementation here
+    	this.setText(cargo.toString());
     }
+
+	public static int getHspace() {
+		return HSPACE;
+	}
+
+	public static int getVspace() {
+		return VSPACE;
+	}
 }
