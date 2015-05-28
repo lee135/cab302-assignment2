@@ -42,7 +42,7 @@ import asgn2Exceptions.InvalidContainerException;
  * </li>
  * </ol>
  * 
- * @author CAB302
+ * @author Yu Zhang (N8628769)
  * @version 1.0
  */
 public class DangerousGoodsContainer extends FreightContainer {
@@ -59,9 +59,14 @@ public class DangerousGoodsContainer extends FreightContainer {
 	 * @throws InvalidContainerException if the gross weight is invalid; or if the category label
 	 * is not in the range 1 to 9, inclusive
 	 */
+	
+	private int category;
+	
 	public DangerousGoodsContainer(ContainerCode code, Integer grossWeight, Integer category)
 	throws InvalidContainerException {
 		//Implementation Here
+		super(code, grossWeight);
+		this.category = category;
 	}
 
 	/**
@@ -71,5 +76,6 @@ public class DangerousGoodsContainer extends FreightContainer {
 	 */
 	public Integer getCategory() {
 		//Implementation Here
+		return this.category;
 	}
 }
