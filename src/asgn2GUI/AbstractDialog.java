@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,8 +16,9 @@ import javax.swing.JPanel;
 /**
  * Provides base class for dialog boxes used for data entry.
  *
- * @author CAB302
+ * @author Yu Zhang (N8628769)
  */
+@SuppressWarnings("unused")
 public abstract class AbstractDialog extends JDialog implements ActionListener {
 
     private JButton btnOK;
@@ -39,8 +41,22 @@ public abstract class AbstractDialog extends JDialog implements ActionListener {
 
         JPanel pnlDialogControls = createDialogControls();
         JPanel pnlContent = createContentPanel();
-
         //Stuff goes here 
+        super.setTitle(title);
+        super.setSize(width, height);
+        JPanel mainPanel = new JPanel();
+        //mainPanel.add(pnlContent);
+        //mainPanel.add(pnlDialogControls);
+        GridBagConstraints gbc = new GridBagConstraints();     
+        gbc.fill = GridBagConstraints.BOTH;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.weightx = 100;
+		gbc.weighty = 100;
+        
+        addToPanel(mainPanel, pnlContent, gbc, 0, 1, 2, 1);
+        addToPanel(mainPanel, pnlDialogControls, gbc, 0, 2, 2, 1);
+        
+        this.add(mainPanel);
     }
 
     /**
@@ -58,6 +74,24 @@ public abstract class AbstractDialog extends JDialog implements ActionListener {
      */
     private JPanel createDialogControls() {
     	//implementation here    
+    	JPanel panel = new JPanel();
+    	GridBagConstraints gbc = new GridBagConstraints();
+    	
+    	
+    	btnOK = this.createButton("OK");
+    	btnCancel = this.createButton("Cancel");  	
+    	panel.setLayout(new GridBagLayout());
+
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 100;
+        gbc.weighty = 100;
+
+    	this.addToPanel(panel, btnOK, gbc, 0, 1, 1, 1);
+    	this.addToPanel(panel, btnCancel, gbc, 2, 1, 1, 1);
+    	
+    	return panel;
+
     }
 
     /**
@@ -137,13 +171,15 @@ public abstract class AbstractDialog extends JDialog implements ActionListener {
      * Disables the OK button
      */
     protected void disableSubmit() {
-    	//implementation here    
+    	//implementation here
+    	btnOK.setEnabled(false);
     }
 
     /**
      * Enables the OK button
      */
     protected void enableSubmit() {
-    	//implementation here    
+    	//implementation here
+    	btnOK.setEnabled(true);
     }
 }
