@@ -4,7 +4,7 @@ package asgn2Exceptions;
  * This class represents any exceptions thrown by any of the freight
  * container or cargo manifest classes.
  * 
- * @author Zehui Zhang (N8646236)
+ * @author CAB302
  * @version 1.0
  */
 @SuppressWarnings("serial") // We're not interested in binary i/o here
@@ -20,6 +20,5 @@ public abstract class CargoException extends Exception {
 	 */
 	public CargoException(String message) {
 		//Implementation Here
-		super(message);
 	}
 }

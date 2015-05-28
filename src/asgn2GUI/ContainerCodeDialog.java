@@ -6,9 +6,6 @@ import java.awt.GridBagLayout;
 // import java.awt.event.ActionEvent;
 // import java.awt.event.ActionListener;
 
-
-
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,18 +15,12 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import asgn2Codes.ContainerCode;
-import asgn2Containers.DangerousGoodsContainer;
-import asgn2Containers.FreightContainer;
-import asgn2Containers.GeneralGoodsContainer;
-import asgn2Containers.RefrigeratedContainer;
 import asgn2Exceptions.CargoException;
-import asgn2Exceptions.InvalidCodeException;
-import asgn2Exceptions.InvalidContainerException;
 
 /**
  * Creates a dialog box allowing the user to enter a ContainerCode.
  *
- * @author Zehui Zhang (N8646236)
+ * @author CAB302
  */
 public class ContainerCodeDialog extends AbstractDialog {
 
@@ -93,24 +84,11 @@ public class ContainerCodeDialog extends AbstractDialog {
              * Attempts to validate the ContainerCode entered in the Container Code text field.
              */
             private void validate() {
-            	//implementation here
-//            	ContainerCode containerCode = null;
-//    			String code = txtCode.getText();
-//    			try {
-//    				containerCode = new ContainerCode(code);
-//    			} catch (InvalidCodeException e) {
-//    				JOptionPane.showMessageDialog(null, e.getMessage(),
-//    						"ERROR", JOptionPane.ERROR_MESSAGE);
-//    			}
+            	//implementation here 
             }
         });
 
       //implementation here 
-        JLabel lblCode = new JLabel("Container Code: ");
-        GridBagConstraints gbc = new GridBagConstraints();
-        this.addToPanel(toReturn, lblCode, gbc, 0, 0, 1, 1);
-		this.addToPanel(toReturn, txtCode, gbc, 3, 0, 1, 1);
-        
 
         return toReturn;
     }
@@ -118,24 +96,6 @@ public class ContainerCodeDialog extends AbstractDialog {
     @Override
     protected boolean dialogDone() {
     	//implementation here 
-    	ContainerCode containerCode = null;
-    	
-		if (txtCode.getText().trim().length() == 0) {	
-			JOptionPane.showMessageDialog(null, "Invalid Input", "ERROR",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-    	
-		String code = txtCode.getText();
-		try {
-			containerCode = new ContainerCode(code);
-		} catch (InvalidCodeException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR",
-					JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
-
-		return true;
     }
 
     /**
@@ -146,24 +106,5 @@ public class ContainerCodeDialog extends AbstractDialog {
      */
     public static ContainerCode showDialog(JFrame parent) {
     	//implementation here
-
-		ContainerCodeDialog dialog = new ContainerCodeDialog(parent);
-		dialog.setVisible(true);
-		
-		if (dialog.txtCode.getText().trim().length() == 0) {		
-			return null;
-		}
-		
-		String code = null;
-		if (dialog.dialogDone()) {
-			code = dialog.txtCode.getText();
-			try {
-				dialog.code = new ContainerCode(code);
-			} catch (InvalidCodeException e1) {
-				e1.printStackTrace();
-			}
-		}
-		
-		return dialog.code;
     }
 }

@@ -5,7 +5,7 @@ package asgn2Exceptions;
  * Exception thrown when an attempt is made to construct an
  * invalid container code.
  * 
- * @author Zehui Zhang (N8646236)
+ * @author CAB302 
  * @version 1.0
  */
 @SuppressWarnings("serial") // We're not interested in binary i/o here
@@ -18,7 +18,6 @@ public class InvalidCodeException extends CargoException {
 	 */
 	public InvalidCodeException(String message) {
 		//Implementation Here
-		super(message);
 	}
 
 }
